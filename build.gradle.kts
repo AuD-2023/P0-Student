@@ -4,7 +4,7 @@ plugins {
 }
 
 exercise {
-    assignmentId.set("h0")
+    assignmentId.set("p0")
 }
 
 submission {
