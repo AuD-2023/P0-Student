@@ -84,3 +84,6 @@ gradle-app.setting
 
 ### Java Misc ###
 *.hprof
+
+### Jagr ####
+jagr.conf
