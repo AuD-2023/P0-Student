@@ -6,12 +6,15 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.sourcegrade.jagr.api.rubric.TestForSubmission;
 import org.sourcegrade.jagr.api.testing.TestCycle;
+import org.sourcegrade.jagr.api.testing.extension.JagrExecutionCondition;
 import org.sourcegrade.jagr.api.testing.extension.TestCycleResolver;
 import spoon.reflect.CtModel;
 import spoon.reflect.declaration.CtClass;
 import spoon.reflect.declaration.CtMethod;
 
-import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.*;
+import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.assertCallEquals;
+import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.contextBuilder;
+import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.emptyContext;
 import static org.tudalgo.algoutils.tutor.general.assertions.Assertions4.assertIsNotRecursively;
 
 @TestForSubmission
@@ -28,8 +31,7 @@ public class IterativeFibonacciCalculatorTests {
     }
 
     @Test
-    @ExtendWith(TestCycleResolver.class)
-    @SuppressWarnings("JUnitMalformedDeclaration")
+    @ExtendWith({TestCycleResolver.class, JagrExecutionCondition.class})
     public void testStrictlyIterative(TestCycle testCycle) {
         CtModel model = SpoonUtils.buildModelFromSubmission(testCycle.getSubmission());
         CtClass<IterativeFibonacciCalculator> iterativeFibonacciCalculatorCtClass = SpoonUtils.getClassFromModel(model, CLASS_NAME);
